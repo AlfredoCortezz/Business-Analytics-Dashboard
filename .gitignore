@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Bases de datos locales
+*.db
+*.sqlite3
+
+# Archivos subidos y datos de runtime
+backend/uploads/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Editores / sistema
+.DS_Store
+.vscode/
+.idea/
+*.log

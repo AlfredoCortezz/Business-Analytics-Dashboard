@@ -1,0 +1,28 @@
+databases:
+  - name: ba-dashboard-db
+    databaseName: ba_dashboard
+    user: ba_dashboard
+    plan: free
+
+services:
+  - type: web
+    name: ba-dashboard-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ba-dashboard-db
+          property: connectionString
+      - key: MAX_UPLOAD_MB
+        value: "5"
+      - key: UPLOAD_DIR
+        value: /tmp/uploads
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: CORS_ORIGINS
+        sync: false
